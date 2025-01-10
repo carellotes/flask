@@ -410,6 +410,7 @@
             /* border-bottom : 3px solid rgba(82, 6, 202, 0.5); */
             transition : 1.0s;
             flex-shrink:0;
+            animation : animatelogo infinite 4s;
         }
         .logo:hover{
             /* width: 445px; */
@@ -2175,9 +2176,20 @@
               transform:translate(0%,-50%);
               filter:invert();
               /* background:linear-gradient(to bottom, rgba(255, 0, 242, 0.9), transparent) */
-            } 
+            }
+        }
+            @keyframes animatelogo{
+            0%{
+            background: url(/static/IMG/LOGO31.png) no-repeat center;
+            }
 
-
+            70%{
+                background: url(/static/IMG/LOGO32.png) no-repeat center;
+            }    
+            100%{
+                background: url(/static/IMG/LOGO31.png) no-repeat center;
+            }    
+            
 
 
         }
@@ -6592,7 +6604,7 @@ print('hello',world!)
         };
         var widths=width;
         
-
+       
 // Javascript
         window.addEventListener('resize', function(){
 	    clearTimeout(timer);
@@ -7120,35 +7132,9 @@ print('hello',world!)
         m_over[k+14].classList.add('active');
         }}
 
-        function logochange(){
-            count++;
-            if(count>=5 & count < 10){
-                logo.classList.add('sticky2');
-                // real.src='icon/real2.svg';
-                // real.style.marginTop='10px';
-                // real.classList.add('sticky2');
-            }
-            if(count<5){
-                // logo.classList.remove('sticky2');
-            }
-            if(count>10 & count<15){
-                logo.classList.add('sticky');
-                logo.classList.remove('sticky2');
-                // real.src='icon/real.svg';
-                // real.style.marginTop='0px';
-                // real.classList.remove('sticky2');
-            }
-            if(count>=15 & count <20){
-                logo.classList.add('sticky2');
-                logo.classList.remove('sticky');
-                count=0;
-            }
-            if(count>25){
-                count=0;
-            }
-        }
         
-        var showimg = setInterval(logochange, 1000);
+        
+       
     </script>
 </body>
 </html>
