@@ -1,11 +1,11 @@
 from flask import Flask, redirect, render_template, url_for, request
 
 
-
+iss=0
 
 # import yfinance as yf
 import requests
-myToken1 = 'xoxb-8253119763543-8261667911078-z0ZB7193MwSZYzPcjHzW5J7j'
+myToken1 = 'xoxb-8253119763543-8261667911078-I43ETaheE99OMitwWynOPcvC'
 def post_message(token, channel, text):
         response = requests.post("https://slack.com/api/chat.postMessage",
         headers={"Authorization": "Bearer "+token},
@@ -26,8 +26,21 @@ app = Flask(__name__)
 # 루트로 가면 저home()함수를 실행한다. 
 # 항상 서버를 시작하고 서버가 동작하면 사용가능하다
 # 127.0.0.1:5000 포트
+
+
 @app.route('/')
 def home():
+    
+    global iss 
+    iss+=1
+    
+    messages = "서버작동동 후 " + str(iss) + " 명이 Home Page 방문왔습니다."
+    post_message(myToken1,"#chiho",messages)
+    
+    return render_template("index.html")
+
+@app.route('/templates')
+def hsome():
     
     global iss 
     iss+=1
