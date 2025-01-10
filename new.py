@@ -5,8 +5,7 @@ from flask import Flask, redirect, render_template, url_for, request
 
 # import yfinance as yf
 import requests
-myToken1 = 'xoxb-8253119763543-8261667911078-yraxeRyPyAGWTVzlJuNVr8ho'
-iss=0
+myToken1 = 'xoxb-8253119763543-8261667911078-z0ZB7193MwSZYzPcjHzW5J7j'
 def post_message(token, channel, text):
         response = requests.post("https://slack.com/api/chat.postMessage",
         headers={"Authorization": "Bearer "+token},
