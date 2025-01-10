@@ -2,21 +2,31 @@ from flask import Flask, redirect, render_template, url_for, request
 
 
 iss=0
-
-
 import requests
-myToken1 = 'xoxp-8253119763543-8267564139155-8299090526128-4bdc51e2b0fc1e56d0725932fd0da8a5'
-def post_message(token, channel, text):
-        response = requests.post("https://slack.com/api/chat.postMessage",
-        headers={"Authorization": "Bearer "+token},
-        data={"channel": channel,"text": text}
-    )
-    # print(response)
+url = "https://hooks.slack.com/services/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"
+web_hook_url = url
+
+text = "안녕하세요! 오늘의 날씨는 '맑음'입니다."
+
+payload = {"text" : text}
+
+requests.post(web_hook_url, json=payload)
+
+# def sendMessage(data):
+#     try:
+        
+#         header = {'Content-type': 'application/json'}
+#         data=data
+#         return requests.post(url, headers=header, json=data)
+        
+#     except Exception as e:
+#         exit(0)
+#     # print(response)
     
     
 
-messages = "서버가 초기화 되었습니다"
-post_message(myToken1,"#chiho",messages)
+# messages = "서버가 초기화 되었습니다"
+# sendMessage(messages)
 
 
 app = Flask(__name__)
@@ -33,7 +43,8 @@ def home():
     global iss 
     iss+=1
     messages = "서버작동동 후 " + str(iss) + " 명이 Home Page 방문왔습니다."
-    post_message(myToken1,"#chiho",messages)
+    payload = {"text" : messages}
+    requests.post(web_hook_url, json=payload)
     return render_template("/index.html")
 
 # @app.route('/templates')
@@ -48,14 +59,18 @@ def home():
 @app.route("/templates", methods=["POST","GET"])
 def login():
      if request.method == "POST":
+            
             user=request.form['name']
-            post_message(myToken1,"#chiho",user)
+            
             phone=request.form['phone']
-            post_message(myToken1,"#chiho",phone)
+            
             email=request.form['email']
-            post_message(myToken1,"#chiho",email)
+            
             contend=request.form['contend']
-            post_message(myToken1,"#chiho",contend)
+            
+            data=[user,phone,email,contend]
+            payload ={"text" : data}
+            requests.post(web_hook_url, json=payload)
             return render_template("./goodbye.html", content=[user,phone,email,contend])
      
      else:
@@ -64,9 +79,10 @@ def login():
 
 @app.route("/<usr>")
 def user(usr):
-     messages=usr
-     post_message(myToken1,"#chiho",messages)
-     return f"<h1>{usr}</h1>"
+    messages=usr
+    payload = {"text" : messages}
+    requests.post(web_hook_url, json=payload)
+    return f"<h1>{usr}</h1>"
 
 if __name__ == "__main__":
     # app.run()
