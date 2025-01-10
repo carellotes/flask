@@ -17,7 +17,7 @@ def post_message(token, channel, text):
     
 myToken = "xoxp-8253119763543-8267564139155-8270790338500-1b68812eb024bccde71be48561404053"
 messages = "서버가 초기화 되었습니다"
-post_message(myToken1,"#chiho",messages)
+post_message(myToken,"#chiho",messages)
 
 
 app = Flask(__name__)
@@ -34,7 +34,7 @@ def home():
     iss+=1
     
     messages = "서버작동동 후 " + str(iss) + " 명이 Home Page 방문왔습니다."
-    post_message(myToken1,"#chiho",messages)
+    post_message(myToken,"#chiho",messages)
     
     return render_template("index.html")
 
@@ -43,7 +43,7 @@ def home():
 def login():
      if request.method == "POST":
             user=request.form['name']
-            post_message(myToken1,"#chiho",user)
+            post_message(myToken,"#chiho",user)
             phone=request.form['phone']
             post_message(myToken1,"#chiho",phone)
             email=request.form['email']
@@ -64,7 +64,7 @@ def user(usr):
 
 if __name__ == "__main__":
     # app.run()
-    app.run(host='0.0.0.0',debug=True, port='80')
+    app.run(host='0.0.0.0',debug=True, port='5000')
 
 
 
