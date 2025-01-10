@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-      <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
@@ -7129,7 +7129,7 @@ print('hello',world!)
                 // real.classList.add('sticky2');
             }
             if(count<5){
-                logo.classList.remove('sticky2');
+                // logo.classList.remove('sticky2');
             }
             if(count>10 & count<15){
                 logo.classList.add('sticky');
@@ -7139,6 +7139,7 @@ print('hello',world!)
                 // real.classList.remove('sticky2');
             }
             if(count>=15 & count <20){
+                logo.classList.add('sticky2');
                 logo.classList.remove('sticky');
                 count=0;
             }
