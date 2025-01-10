@@ -3,8 +3,8 @@ from flask import Flask, redirect, render_template, url_for, request
 
 iss=0
 
-# import yfinance as yf
-# import requests
+
+import requests
 # myToken1 = 'xoxb-8253119763543-8261667911078-dvXQn0n8Y7e6sRS7HHzDOn5J'
 # def post_message(token, channel, text):
 #         response = requests.post("https://slack.com/api/chat.postMessage",
@@ -45,7 +45,7 @@ def hsome():
     return render_template("/index.html")
 
 
-@app.route("/index", methods=["POST","GET"])
+@app.route("/templates", methods=["POST","GET"])
 def login():
      if request.method == "POST":
             user=request.form['name']
