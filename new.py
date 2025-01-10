@@ -34,7 +34,7 @@ def home():
     iss+=1
     messages = "서버작동동 후 " + str(iss) + " 명이 Home Page 방문왔습니다."
     # post_message(myToken1,"#chiho",messages)
-    return render_template("/templates/index.html")
+    return render_template("/index.html")
 
 @app.route('/templates')
 def hsome():
