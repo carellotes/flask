@@ -45,7 +45,7 @@ def hsome():
     return render_template("/index.html")
 
 
-@app.route("/templates/templates", methods=["POST","GET"])
+@app.route("/templates", methods=["POST","GET"])
 def login():
      if request.method == "POST":
             user=request.form['name']
