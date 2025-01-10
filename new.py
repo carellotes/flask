@@ -56,7 +56,7 @@ def login():
             # post_message(myToken1,"#chiho",email)
             contend=request.form['contend']
             # post_message(myToken1,"#chiho",contend)
-            return render_template("/goodbye.html", content=[user,phone,email,contend])
+            return render_template("./goodbye.html", content=[user,phone,email,contend])
      
      else:
         return render_template("/templates/index.html")
