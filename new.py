@@ -3,7 +3,7 @@ from flask import Flask, redirect, render_template, url_for, request
 
 iss=0
 import requests
-url = "https://hooks.slack.com/services/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"
+url = "https://hooks.slack.com/services/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"
 web_hook_url = url
 
 text = "안녕하세요! 오늘의 날씨는 '맑음'입니다."
