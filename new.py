@@ -5,7 +5,7 @@ iss=0
 
 # import yfinance as yf
 import requests
-myToken1 = 'xoxb-8253119763543-8261667911078-Fv2f1vNfxv5adEJ3cYkk2CWJ'
+myToken1 = 'xoxb-8253119763543-8261667911078-dvXQn0n8Y7e6sRS7HHzDOn5J'
 def post_message(token, channel, text):
         response = requests.post("https://slack.com/api/chat.postMessage",
         headers={"Authorization": "Bearer "+token},
