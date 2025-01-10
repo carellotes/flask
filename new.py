@@ -5,7 +5,7 @@ iss=0
 
 # import yfinance as yf
 import requests
-myToken1 = 'xoxb-8253119763543-8261667911078-I43ETaheE99OMitwWynOPcvC'
+myToken1 = 'xoxb-8253119763543-8261667911078-rRDER2jDbx6s8sW5PWiCeNhg'
 def post_message(token, channel, text):
         response = requests.post("https://slack.com/api/chat.postMessage",
         headers={"Authorization": "Bearer "+token},
@@ -14,7 +14,7 @@ def post_message(token, channel, text):
     # print(response)
     
     
-myToken = "xoxp-8253119763543-8267564139155-8270790338500-1b68812eb024bccde71be48561404053"
+
 messages = "서버가 초기화 되었습니다"
 post_message(myToken1,"#chiho",messages)
 
@@ -51,7 +51,7 @@ def hsome():
     return render_template("index.html")
 
 
-@app.route("/index", methods=["POST","GET"])
+@app.route("/templates/index", methods=["POST","GET"])
 def login():
      if request.method == "POST":
             user=request.form['name']
