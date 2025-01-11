@@ -3,11 +3,12 @@ from flask import Flask, redirect, render_template, url_for, request
 
 iss=0
 import requests
-url2="T087F3HNFFZ/B0885J6C2QJ/4IRFBtdvqmCpDoAoCktc6qI1"
-url = "https://hooks.slack.com/services/"
-web_hook_url = url+url2
+url2='B0885J6C2QJ/4IRFBtdvqmCpDoAoCktc6qI1'
+url1 = "https://hooks.slack.com/services/T087F3HNFFZ/"
+url=url1+url2
+web_hook_url = url
 
-text = "안녕하세요! 오늘의 날씨는 '맑음'입니다."
+text = "안녕하세요! 아직쫒겨나진 않음'입니다.ㄴㄴㅇㅇㅇㅇㄴㄴ"
 
 payload = {"text" : text}
 
@@ -60,20 +61,28 @@ def home():
 @app.route("/templates", methods=["POST","GET"])
 def login():
      if request.method == "POST":
-            
             user=request.form['name']
-            
             phone=request.form['phone']
-            
             email=request.form['email']
-            
             contend=request.form['contend']
             
-            data=[user,phone,email,contend]
-            payload ={"text" : data}
+            data={'text':user}
+            payload = data 
             requests.post(web_hook_url, json=payload)
+            data={'text':phone}
+            payload = data 
+            requests.post(web_hook_url, json=payload)
+            data={'text':email}
+            payload = data 
+            requests.post(web_hook_url, json=payload)
+            data={'text':contend}
+            payload = data 
+            requests.post(web_hook_url, json=payload)
+
+
+
+
             return render_template("./goodbye.html", content=[user,phone,email,contend])
-     
      else:
         return render_template("/templates/index.html")
 
