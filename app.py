@@ -1,34 +1,23 @@
 from flask import Flask, redirect, render_template, url_for, request
 
 
-iss=0
+
+
+# import yfinance as yf
 import requests
-url2='B0885J6C2QJ/4IRFBtdvqmCpDoAoCktc6qI1'
-url1 = "https://hooks.slack.com/services/T087F3HNFFZ/"
-url=url1+url2
-web_hook_url = url
-
-text = "안녕하세요! 아직쫒겨나진 않음'입니다.ㄴㄴㅇㅇㅇㅇㄴㄴ"
-
-payload = {"text" : text}
-
-requests.post(web_hook_url, json=payload)
-
-# def sendMessage(data):
-#     try:
-        
-#         header = {'Content-type': 'application/json'}
-#         data=data
-#         return requests.post(url, headers=header, json=data)
-        
-#     except Exception as e:
-#         exit(0)
-#     # print(response)
+myToken1 = 'xoxb-8253119763543-8261667911078-yraxeRyPyAGWTVzlJuNVr8ho'
+iss=0
+def post_message(token, channel, text):
+        response = requests.post("https://slack.com/api/chat.postMessage",
+        headers={"Authorization": "Bearer "+token},
+        data={"channel": channel,"text": text}
+    )
+    # print(response)
     
     
-
-# messages = "서버가 초기화 되었습니다"
-# sendMessage(messages)
+myToken = "xoxp-8253119763543-8267564139155-8270790338500-1b68812eb024bccde71be48561404053"
+messages = "서버가 초기화 되었습니다"
+post_message(myToken1,"#chiho",messages)
 
 
 app = Flask(__name__)
@@ -38,65 +27,44 @@ app = Flask(__name__)
 # 루트로 가면 저home()함수를 실행한다. 
 # 항상 서버를 시작하고 서버가 동작하면 사용가능하다
 # 127.0.0.1:5000 포트
-
-
 @app.route('/')
 def home():
+    
     global iss 
     iss+=1
+    
     messages = "서버작동동 후 " + str(iss) + " 명이 Home Page 방문왔습니다."
-    payload = {"text" : messages}
-    requests.post(web_hook_url, json=payload)
-    return render_template("/index.html")
-
-# @app.route('/templates')
-# def hsome():
-#     global iss 
-#     iss+=1
-#     messages = "서버작동동 후 " + str(iss) + " 명이 Home Page 방문왔습니다."
-#     # post_message(myToken1,"#chiho",messages)
-#     return render_template("/index.html")
+    post_message(myToken1,"#chiho",messages)
+    
+    return render_template("index.html")
 
 
-@app.route("/templates", methods=["POST","GET"])
+@app.route("/index", methods=["POST","GET"])
 def login():
      if request.method == "POST":
             user=request.form['name']
+            post_message(myToken1,"#chiho",user)
             phone=request.form['phone']
+            post_message(myToken1,"#chiho",phone)
             email=request.form['email']
+            post_message(myToken1,"#chiho",email)
             contend=request.form['contend']
-            
-            data={'text':user}
-            payload = data 
-            requests.post(web_hook_url, json=payload)
-            data={'text':phone}
-            payload = data 
-            requests.post(web_hook_url, json=payload)
-            data={'text':email}
-            payload = data 
-            requests.post(web_hook_url, json=payload)
-            data={'text':contend}
-            payload = data 
-            requests.post(web_hook_url, json=payload)
-
-
-
-
-            return render_template("./goodbye.html", content=[user,phone,email,contend])
+            post_message(myToken1,"#chiho",contend)
+            return render_template("goodbye.html", content=[user,phone,email,contend])
+     
      else:
-        return render_template("/templates/index.html")
+        return render_template("index.html")
 
 
 @app.route("/<usr>")
 def user(usr):
-    messages=usr
-    payload = {"text" : messages}
-    requests.post(web_hook_url, json=payload)
-    return f"<h1>{usr}</h1>"
+     messages=usr
+     post_message(myToken1,"#chiho",messages)
+     return f"<h1>{usr}</h1>"
 
 if __name__ == "__main__":
     # app.run()
-    app.run(host='0.0.0.0',debug=True, port='5000')
+    app.run(host='0.0.0.0',debug=True, port='80')
 
 
 
