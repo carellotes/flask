@@ -60,7 +60,7 @@ def login():
 def user(usr):
      messages=usr
     #  post_message(myToken1,"#chiho",messages)
-     return f"<h1>{usr}</h1>"
+     return render_template("index.html")
 
 if __name__ == "__main__":
     # app.run()
